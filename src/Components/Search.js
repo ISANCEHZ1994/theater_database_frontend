@@ -14,8 +14,8 @@ import React from 'react';
 
 export default function Search(){
         return(
-          <section className='searchbox'>
-
+          <section className='searchbox-wrap'>
+              <input type='text' placeholder='Search For A Movie...' className='searchbox'/>
           </section>
         )
 };

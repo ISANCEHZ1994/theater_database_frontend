@@ -1,4 +1,5 @@
 import React from 'react';
+import Search from './Components/Search';
 
 export default function App() {
   return (
@@ -7,7 +8,7 @@ export default function App() {
           <h1> Movie DataBase </h1>
         </header>
         <main>
-          <Search/>
+          <Search />
         </main>
     </div>
   );
