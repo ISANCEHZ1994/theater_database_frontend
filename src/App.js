@@ -1,12 +1,14 @@
 import React from 'react';
-import './App.css';
 
-function App() {
+export default function App() {
   return (
     <div className="App">
-      Movie DataBase
+
+      <header>
+        <h1> Movie DataBase </h1>
+      </header>
+
     </div>
   );
-}
+};
 
-export default App;
