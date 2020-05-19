@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Search from './Components/Search';
-import Results from './Results';
+import Results from './Components/Results';
+import Popup from './Components/Popup';
 import axios from 'axios';
 
 export default function App() {
@@ -11,8 +12,11 @@ export default function App() {
     selected: {} // when selecting a SPECIFIC movie - we want to see a everything that has to do with that movie
   });
 
-  const apiUrl = 'http://www.omdbapi.com/?i=tt3896198&apikey=91302107';
-
+  const apiUrl = 'http://www.omdbapi.com/?apikey=91302107';
+  // useEffect(()=>{
+  //   console.log('should show after every render')
+  //   console.log(state)
+  // })
   const search = (e) => {
     if(e.key === "Enter"){ // make sure the e in Enter is CAPITALIZE 
       axios(apiUrl + "&s=" + state.s).then( ({ data }) => { // we want to destructure the data variable because we only want to use some specifc data
@@ -21,7 +25,8 @@ export default function App() {
         setState( prevState => {
           return {...prevState, results: results} // the search function will take the information from the axios(technically a fetch) and store it into the array 'results'
         })
-        // console.log(data)
+        console.log(data)
+        
       }) // closes then
     }; // closes if
   }; // closes function
@@ -35,8 +40,13 @@ export default function App() {
   };
 
   const openPopUp = (id) => {
-    axios(apiUrl + "&s=" + id).then( ({ data }) => {
+    // console.log(id)
+    // axios(apiUrl + "&i=" + id)
+    // .then(({data})=> console.log(data))
+    axios(apiUrl + "&i=" + id).then( ({ data }) => {
       let result = data
+
+      console.log(result)
 
       setState(prevState => {
         return {...prevState, selected: result}
@@ -63,9 +73,11 @@ export default function App() {
           search={search}
           />
           <Results 
-          results={state.results}
-
+          results={state.results} 
+          openPopUp={openPopUp}
           />
+          
+          {(typeof state.selected.Title != "undefined") ? <Popup selected={state.selected} closedPopUp={closedPopUp} /> : false}
         </main>
     </div>
   );
