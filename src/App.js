@@ -14,14 +14,14 @@ export default function App() {
   const apiUrl = 'http://www.omdbapi.com/?i=tt3896198&apikey=91302107';
 
   const search = (e) => {
-    if(e.key === 'Enter'){ // make sure the e in Enter is CAPITALIZE 
+    if(e.key === "Enter"){ // make sure the e in Enter is CAPITALIZE 
       axios(apiUrl + "&s=" + state.s).then( ({ data }) => { // we want to destructure the data variable because we only want to use some specifc data
         let results = data.Search
 
         setState( prevState => {
           return {...prevState, results: results} // the search function will take the information from the axios(technically a fetch) and store it into the array 'results'
         })
-        // console.log(data)
+        console.log(data)
       }) // closes then
     }; // closes if
   }; // closes function
@@ -38,13 +38,14 @@ export default function App() {
   return (
     <div className="App">
         <header>
-          <h1> Movie DataBase </h1>
+          <h1> Entertainment DataBase </h1>
         </header>
         <main>
           <Search 
           handleInput={handleInput}
           search={search}
           />
+          <Results results={state.results}/>
         </main>
     </div>
   );

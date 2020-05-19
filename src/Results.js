@@ -6,9 +6,10 @@ export default function Results({ results }) {
 
     return(
         <section className='results' >
-            {results.map( result => {
-                <Result result={result} />
-            })}
+            {results.map( result => ( // not curly boys but regular boys
+                <Result key={result.imdbID} result={result}  />
+            )
+            )}
         </section>
     )
 };
