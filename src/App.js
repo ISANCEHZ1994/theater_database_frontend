@@ -21,7 +21,7 @@ export default function App() {
         setState( prevState => {
           return {...prevState, results: results} // the search function will take the information from the axios(technically a fetch) and store it into the array 'results'
         })
-        console.log(data)
+        // console.log(data)
       }) // closes then
     }; // closes if
   }; // closes function
@@ -34,7 +34,24 @@ export default function App() {
     })
   };
 
-  console.log(state.s)
+  const openPopUp = (id) => {
+    axios(apiUrl + "&s=" + id).then( ({ data }) => {
+      let result = data
+
+      setState(prevState => {
+        return {...prevState, selected: result}
+      })
+
+    })
+  };
+
+  const closedPopUp = () => {
+    setState( prevState => {
+      return { ...prevState, selected: {} }
+    })
+  };
+
+  // console.log(state.s)
   return (
     <div className="App">
         <header>
@@ -45,7 +62,10 @@ export default function App() {
           handleInput={handleInput}
           search={search}
           />
-          <Results results={state.results}/>
+          <Results 
+          results={state.results}
+
+          />
         </main>
     </div>
   );

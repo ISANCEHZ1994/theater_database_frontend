@@ -151,4 +151,13 @@ section{
     background: #44c484;
     color: #223343;
     border-radius: 8px;
+    border: none;
+    outline: none;
+    appearance: none;
+    cursor: pointer;
+    transition: 0.4s ease-out;
+}
+
+.popup .content .close:hover{
+    background: #223343;
 }
