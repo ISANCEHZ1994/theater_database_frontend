@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import Search from './Components/Search';
+import Results from './Results';
 import axios from 'axios';
 
 export default function App() {
